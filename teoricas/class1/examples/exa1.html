@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Curso de Node.js</title>
+    <script type="text/javascript">
+        var keywords = ["banana"
+            , "pera"
+            , "manzana"
+            , "pera"
+            , "ajo"
+            , "tomate"
+            , "banana"
+            , "uvas"];
+
+        var counter= (a)=>{
+
+            let actual = null;
+
+            a.reduce((prev, current)=>{
+                 let o= prev[current] ? (prev[current].v++, prev) : (prev[current] = {k: current, v: 1}, prev);
+                actual = actual==null ?
+                        prev[current]
+                        : ( actual.v < o[current].v ? o[current]: actual );
+
+                return o;
+            }, {});
+
+            return actual;
+        }
+
+        console.log("counter: ", counter(keywords));
+
+    </script>
+</head>
+<body>
+<h1>Curso de Node.js</h1>
+
+<p>Example: contar palabras.</p>
+</body>
+</html>
