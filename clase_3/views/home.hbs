@@ -1,0 +1,17 @@
+
+<table>
+	<tr>
+		<th>DNI</th>
+		<th>NOMBRE</th>
+		<th>EDAD</th>
+		<th>HORA DE REGISTRO</th>
+	</tr>
+		{{#each alumnos}}
+	<tr>
+		<td>{{this.dni}}</td>
+		<td>{{this.nombre}}</td>
+		<td>{{this.edad}}</td>
+		<td>{{this.fecha}}</td>
+	</tr>
+	{{/each}}
+</table>
