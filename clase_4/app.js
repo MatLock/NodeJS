@@ -39,15 +39,13 @@ app.get("/info/:id", function(req,res){
 
 app.post("/save" , (req,res) => {
 	let alum = req.body;
-	alum.fecha = new Date().toString();
-	alumnos.push(alum);
+	db.alumnos.insert(alum, (err,data) => res.redirect('/info/'+data._id));
 	fs.writeFile( './security/registro.txt', JSON.stringify(alum) + '\n',{enconding:'utf8',flag: 'a+'} , (err) => {
 		if (err) {
 			console.log('error');
 		}
 	});
 	//res.json(req.body);
-	res.redirect('/');
 });
 
 
