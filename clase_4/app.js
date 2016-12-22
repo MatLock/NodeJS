@@ -32,9 +32,16 @@ app.get("/add", (req,res) => res.render("form"));
 
 //{"_id": ObjectId("51d151c6b918a71d170000c7")}
 app.get("/info/:id", function(req,res){
-	db.alumnos.find({_id:ObjectId(req.params.id)}, (err,data) => {
-			res.render('info',{alum:data[0]});
+	db.alumnos.findOne({_id:ObjectId(req.params.id)}, (err,data) => {
+			res.render('info',{alum:data});
 	})
+});
+
+
+app.get("/delete/:id",function(req,res){
+	db.alumnos.remove({_id:ObjectId(req.params.id)}, (err,data) =>{
+		res.redirect('/');
+	});
 });
 
 app.post("/save" , (req,res) => {
