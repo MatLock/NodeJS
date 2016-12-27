@@ -1,0 +1,51 @@
+
+<html>
+<head>
+  <title>Central de alumnos</title>
+</head>
+<body>
+
+  <a href="/add">Add+</a> | <a href="/">List</a>
+
+  {{{body}}}
+
+</body>
+ <script src="/socket.io/socket.io.js"> </script>
+ <script src="app.js"> </script>
+ <script>
+ 	
+ 	 var socket = io();
+
+ 	 function deleteAlumno(_id){
+ 	 	socket.emit('deleteAlumno', _id);
+ 	 }
+
+ 	 function onVerAlumno(dni){
+ 	 	socket.emit('onVerAlumno',dni);
+ 	 }
+
+ 	 function altaAlumno(_id,alumn){
+ 	 	console.log(alumn);
+ 	 	socket.emit('update',{_id:_id,alumn:alumn});
+ 	 }
+
+ 	 socket.on('alumnos', function(data) => {
+ 	 	data.forEach(function(alum){
+ 	 		var el = $('tr');
+ 	 		el.append($('<td><span onClick=profile('+a._id+')>'+alum._id+'</span></td>'));
+ 	 		el.append($('<td>'+alum.fname+'</td>'));
+ 	 		el.append($('<td>'+alum.lname+'</td>'));
+ 	 		$('#dataList').append(el);
+ 	 	});
+ 	 });
+
+ 	 socket.on('notification' , (msg) => alert(msg));
+
+ 	 socket.on('profile', (alumn) => alert(alumn));
+ 	 
+ 	 socket.on('reload', function (data) {
+    	location.reload();
+	});
+ </script>
+
+</html>
