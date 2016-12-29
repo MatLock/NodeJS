@@ -1,0 +1,21 @@
+<h1>Home</h1>
+<div ng-controller="searchController as controller">
+    
+    <button ng-click="controller.search()">Buscar</button>
+
+    <table ng-show="results">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>body</th>
+        </tr>
+        <tr ng-repeat="result in results">
+            <td>{{result.email}}</td>
+            <td>{{result.fname}}</td>
+            <td>{{result.lname}}</td>
+            <td>{{result._id}}</td>
+            <td><button ng-click="deleteUsuario(result._id)">borrar</button></td>
+        </tr>
+    </table>
+</div>
